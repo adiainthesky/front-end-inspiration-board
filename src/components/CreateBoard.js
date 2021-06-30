@@ -1,56 +1,98 @@
 import React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
 const CreateBoard = (props) => {
 
-  const [newTitle, setNewTitle] = useState("")
-  const [newOwner, setNewOwner] = useState("")
+  // const [newTitle, setNewTitle] = useState("")
+  // const [newOwner, setNewOwner] = useState("")
 
-  const BASE_URL="https://sand-inspiration-board.herokuapp.com"
+  const [formFields, setFormFields] = useState({
+    title: '',
+    owner: ''
+  });
 
-  const createNewBoard = (props) => {
-    console.log(newTitle, newOwner)
+  const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
+
+  const onTitleChange = (event) => {
+    setFormFields({
+      ...formFields,
+      title: event.target.value
+    })
+  }
+
+  const onOwnerChange = (event) => {
+    setFormFields({
+      ...formFields,
+      owner: event.target.value
+    })
+  }
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    console.log('I am in onFormSubmit', event);
+    console.log(formFields)
     const requestBody = {
-      title: newTitle,
-      owner: newOwner
+      title: formFields.title,
+      owner: formFields.owner
     }
-    console.log(requestBody);
-    axios.post(`${BASE_URL}/boards`, requestBody) 
-      .then((response)=>{
-        axios.get(`${BASE_URL}/boards`).then((boardsResponse)=>{
+    // console.log(requestBody);
+    axios.post(`${BASE_URL}/boards`, requestBody)
+      .then((response) => {
+        axios.get(`${BASE_URL}/boards`).then((boardsResponse) => {
           const boards = boardsResponse.data
-          props.setBoards(boards)       
+          console.log(boards);
+          props.onUpdateBoardList(boards)
         })
       })
+
     console.log("New board created")
-  }
 
-  const onTitleChanged = (event) => {
-    setNewTitle(event.target.value);
-  }
-
-  const onOwnerChanged = (event) => {
-    setNewOwner(event.target.value);
-  }
-    return (
-    <section>
-        <form onSubmit={(event) => event.preventDefault()}> {/*maybe take out API stuff*/}
-            <label for="title">Board Title</label>
-            <input id="title" type="text" value={newTitle} onChange={onTitleChanged}/>
-            <label for="owner">Owner's Name</label>
-            <input id="owner" type="text" value={newOwner} onChange={onOwnerChanged}/>
-            <button onClick={createNewBoard}>Create New Board</button>
-        </form>
-    </section> 
-    )
-}
-
-CreateBoard.propTypes = {
-    // value: PropTypes.string.isRequired,
-    // onClickCallback: PropTypes.func.isRequired,
-    // id: PropTypes.number.isRequired,
+    setFormFields({
+      // resets the form
+      title: '',
+      owner: '',
+    });
   };
 
+  return (
+    <section>
+      <form onSubmit={onFormSubmit}>
+
+        <div>
+          <label
+            htmlFor="title">
+            Board Title
+          </label>
+          <input
+            name="title"
+            value={formFields.newTitle}
+            onChange={onTitleChange} />
+        </div>
+
+        <div>
+          <label htmlFor="owner">
+            Owner's Name
+          </label>
+
+          <input
+            name="owner"
+            value={formFields.newOwner}
+            onChange={onOwnerChange} />
+        </div>
+
+        <input
+          type="submit"
+          value="Create New Board" />
+
+      </form>
+    </section>
+  )
+}
+
 export default CreateBoard;
+
+CreateBoard.propTypes = {
+  onUpdateBoardList: PropTypes.func.isRequired
+};
