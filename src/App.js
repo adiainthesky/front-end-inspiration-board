@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 import Board from './components/Board';
-import { useState} from 'react';
-import axios from 'axios';
+import CreateBoard from './components/CreateBoard';
+import {useState} from 'react';
+// import axios from 'axios';
 
 
 function App() {
-  // const [boards, setBoards] = useState([{title:'Delia\'s', owner: "delia"}, {title:'Adelaide\'s'}, {title:'Natasha\'s'}, {title:'Sara\'s'}])
   const [boards, setBoards] = useState([{title:'Delia\'s', owner: "delia", cards: []}, {title:'Adelaide\'s'}, {title:'Natasha\'s'}, {title:'Sara\'s'}])
   const [selectedBoard, setSelectedBoard] = useState(null)
 
@@ -14,9 +14,8 @@ function App() {
   
   //form to create call createNewBoard
 
-
-  const createNewBoard = (title, owner) => {
-    console.log(`New board ${title} created`)
+  const createNewBoard = () => {
+    console.log(`New board ${newTitle} created`)
     // axios.post('',{title,owner}) 
     //   .then((response)=>{
     //     axios.get('').then((boardsResponse)=>{
@@ -25,14 +24,6 @@ function App() {
     //     })
     //   })
   }
-
-  // const createNewBoard = (data) => {
-  //   const newBoard = {
-  //     title: data.title,
-  //     owner: data.owner
-  //   }
-  //   axios...
-  // }
 
   const onSelectBoard = (event) => {
     //render on page
@@ -76,32 +67,21 @@ function App() {
             {getAllOptions()}
           </select>
         <h2>Create a new board</h2>
+
           {/* <form onSubmit> 
             <input type="text" onChange = {createNewBoard}> Board title </input>
             <input type="text"> Owner's name </input>
             <input type="button"></input>
           </form> */}
         {/* <form action="http://..." method="POST"> maybe take out API stuff */}
-        <form> {/*maybe take out API stuff*/}
-          <label for="title">Board Title
-            {/* <input type="text" title="title" value={state.title} onChange={createNewBoard}/> */}
-            <input type="text" id="title"/>
-          </label>
-          <label for="owner">Owner's Name
-            {/* <input type="text" name="owner" value={state.owner} onChange={createNewBoard}/> */}
-            <input type="text" id="name"/>
-          </label>
-          <button onClick={(event) => createNewBoard(event.target.value)}>Create New Board</button>
-        </form>
+
+        <CreateBoard onClickCallback={createNewBoard}/>
+
       </section> 
-
-
-
 
 {/*   
 function Form() {
   const [newBoard, setNewBoard] = useState({title: "", owner: ""})
-
 
 function addNewBoard(evt) {
   const newBoard = evt.target.value;
