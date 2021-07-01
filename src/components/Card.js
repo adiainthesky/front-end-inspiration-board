@@ -9,7 +9,7 @@ const Card = (props) => {
         <section>
             <p>{props.message}</p>
             <ul>
-                <li><p>{props.likes_count}⭐</p></li>
+                <li><p>{props.likes_count}🐚</p></li>
                 <li><p onClick={() => props.plusOneStar(props.card_id)}>+1</p></li>
                 <li><p onClick={() => props.deleteCard(props.card_id)}>Delete</p></li>
             </ul>

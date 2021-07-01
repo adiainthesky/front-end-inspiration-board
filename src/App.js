@@ -52,7 +52,7 @@ function App() {
 
   return (
     <section className="App">
-      <header>
+      <header className="Header">
         {/* image below is for CSS purposes */}
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpTs4k73tsmQGuUInH-lVvYy0S7yOhO4z3hQ&usqp=CAU" className="App-logo" alt="sandy beach" /> */}
         {/* //"safe navigation operator" '?' asking if null, use null, but if not null, use look up*/}
@@ -64,6 +64,7 @@ function App() {
         <BoardList selectedBoard={selectedBoard} onBoardSelected={onBoardSelected} boards={boards}/>
         <CreateBoard onUpdateBoardList={refreshBoards} />
       </main>
+      {/* <footer>copyright 2021</footer> */}
     </section>
   );
 }
