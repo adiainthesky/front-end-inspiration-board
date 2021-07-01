@@ -1,18 +1,17 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Board from './Board';
 import './Board.css';
-// import {useState} from 'react';
 
 const BoardList = (props) => {
 
     const onSelectChanged = (event) => {
         //render on page
-        const index=event.target.value
+        const index = event.target.value
         props.onBoardSelected(props.boards[index]);
 
-        console.log(event.target)
-        console.log(event.target.value)
-    }
+        console.log(event.target);
+        console.log(event.target.value);
+    };
 
     const getAllOptions = () => {
         const options = props.boards.map((board, index) =>
@@ -21,7 +20,7 @@ const BoardList = (props) => {
             <option key={board.board_id} value={index}>{board.title}</option>
         );
     return options;
-    }
+    };
 
     return (
     <section>
@@ -29,16 +28,22 @@ const BoardList = (props) => {
         <select onChange={onSelectChanged}> 
             {getAllOptions()}
         </select>
-        <h2>Create a new board</h2>
         <main>
-            <Board selectedBoard={props.selectedBoard}/>
+            <Board board_id={props.board_id} selectedBoard={props.selectedBoard}/>
         </main>
     </section>
     )
 };
 
 BoardList.propTypes = {
-
-}
+    selectedBoard: PropTypes.string.isRequired,
+    onBoardSelected: PropTypes.func.isRequired,
+    boards: PropTypes.arrayOf(
+          PropTypes.shape({
+            board_id: PropTypes.number.isRequired,
+            title: PropTypes.string.isRequired,
+            owner: PropTypes.string.isRequired
+          }))
+};
 
 export default BoardList;

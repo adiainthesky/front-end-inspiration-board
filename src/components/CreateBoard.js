@@ -3,90 +3,72 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const CreateBoard = (props) => {
+const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
 
-  // const [newTitle, setNewTitle] = useState("")
-  // const [newOwner, setNewOwner] = useState("")
+const CreateBoard = (props) => {
 
   const [formFields, setFormFields] = useState({
     title: '',
     owner: ''
   });
 
-  const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
-
   const onTitleChange = (event) => {
     setFormFields({
       ...formFields,
       title: event.target.value
     })
-  }
+  };
 
   const onOwnerChange = (event) => {
     setFormFields({
       ...formFields,
       owner: event.target.value
     })
-  }
+  };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
     console.log('I am in onFormSubmit', event);
-    console.log(formFields)
+    console.log(formFields);
     const requestBody = {
       title: formFields.title,
       owner: formFields.owner
     }
-    
     axios.post(`${BASE_URL}/boards`, requestBody)
       .then((response) => {
       props.onUpdateBoardList()
       })
-
     setFormFields({
       // resets the form
       title: '',
-      owner: '',
+      owner: ''
     });
   };
 
   return (
     <section>
       <form onSubmit={onFormSubmit}>
+        <h2>Create a new board</h2>
 
         <div>
-          <label
-            htmlFor="title">
-            Board Title
-          </label>
-          <input
-            name="title"
-            value={formFields.newTitle}
-            onChange={onTitleChange} />
+          <label htmlFor="title">Board Title: </label>
+          <input type="text" name="title" value={formFields.newTitle} onChange={onTitleChange} />
         </div>
 
         <div>
-          <label htmlFor="owner">
-            Owner's Name
-          </label>
-
-          <input
-            name="owner"
-            value={formFields.newOwner}
-            onChange={onOwnerChange} />
+          <label htmlFor="owner">Owner's Name: </label>
+          <input type="text" name="owner" value={formFields.newOwner} onChange={onOwnerChange} />
         </div>
 
-        <input
-          type="submit"
-          value="Create New Board" />
+        <input type="submit" value="Create New Board" />
 
       </form>
     </section>
   )
-}
-
-export default CreateBoard;
+};
 
 CreateBoard.propTypes = {
   onUpdateBoardList: PropTypes.func.isRequired
 };
+
+export default CreateBoard;
