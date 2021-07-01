@@ -37,17 +37,11 @@ const CreateBoard = (props) => {
       title: formFields.title,
       owner: formFields.owner
     }
-    // console.log(requestBody);
+    
     axios.post(`${BASE_URL}/boards`, requestBody)
       .then((response) => {
-        axios.get(`${BASE_URL}/boards`).then((boardsResponse) => {
-          const boards = boardsResponse.data
-          console.log(boards);
-          props.onUpdateBoardList(boards)
-        })
+      props.onUpdateBoardList()
       })
-
-    console.log("New board created")
 
     setFormFields({
       // resets the form
