@@ -3,6 +3,8 @@ import './Board.css';
 
 const Card = (props) => {
 
+    console.log(`${props.message} Message on Card`);
+
     return (
         <section>
             <p>{props.message}</p>

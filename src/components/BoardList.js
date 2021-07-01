@@ -22,6 +22,9 @@ const BoardList = (props) => {
     return options;
     };
 
+    console.log(`${props.selectedBoard?.board_id} BoardList`);
+
+
     return (
     <section>
         <h2>Pick a board</h2>
@@ -30,7 +33,7 @@ const BoardList = (props) => {
         </select>
         <main>
             {/* Is this redundant, pssing both board_id and selsectedBoard? */}
-            <Board board_id={props.board_id} selectedBoard={props.selectedBoard}/>
+            <Board selectedBoard={props.selectedBoard}/>
         </main>
     </section>
     )

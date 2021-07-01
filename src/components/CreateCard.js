@@ -13,10 +13,10 @@ const CreateCard = (props) => {
 
   const onMessageChange = (event) => {
     setFormFields({
-      ...formFields,
       message: event.target.value
-      // what about the stars, +1 and Delete?
     })
+    console.log(`${formFields.message} Message on CreateCard LINE 18`);
+
   };
 
   const onFormSubmit = (event) => {
@@ -26,15 +26,21 @@ const CreateCard = (props) => {
     const requestBody = {
       message: formFields.message
     }
-    axios.post(`${BASE_URL}/boards/${props.board_id}/cards`, requestBody)
+    axios.post(`${BASE_URL}/boards/${props.selectedBoard?.board_id}/cards`, requestBody)
       .then((response) => {
-      props.onUpdateCardList()
+      props.onUpdateCardDisplay()
       })
     setFormFields({
       // resets the form
       message: ''
     });
   };
+
+  console.log(`${props.selectedBoard?.board_id} is the board id in CreateCard`);
+
+  console.log(`${formFields.message} is the message on CreateCard`);
+
+
 
   return (
     <section>
