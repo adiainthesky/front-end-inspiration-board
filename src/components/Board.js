@@ -12,16 +12,16 @@ const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
 const Board = (props) => {
   //use board id to get cards via useEffect
   
-  const [cards, setCards] = useState(
-    [
-      {
-        board_id: null,
-        card_id: null,
-        likes_count: 0,
-        message: ""
-      },
-    ]
-  );
+  const [cards, setCards] = useState([]);
+    // [
+    //   {
+    //     board_id: null,
+    //     card_id: null,
+    //     likes_count: 0,
+    //     message: ""
+    //   }
+    // ]
+  // );
 
   // if board value changes, useEffect hears it and re renders the cards
   useEffect (() => {
@@ -30,34 +30,40 @@ const Board = (props) => {
     },[props.selectedBoard]);
 
   const refreshCards = () => {
+    console.log(props.selectedBoard);
+    // console.log(props.selectedBoard.board_id);
     return axios
-    .get(`${BASE_URL}/boards/${props.board_id}/cards`)
+    .get(`${BASE_URL}/boards/${props.selectedBoard?.board_id}/cards`)
     .then((cardsResponse) => {
       const cards = cardsResponse.data
+      console.log(`${cards} GET request from AXIOS in Boards`);
       console.log(cards);
       setCards(cards)})
     .catch((error)=>{console.log(error)})
   };
 
-  const deleteCard = () => {
+  const plusOneStar = () => {
+    return <div></div>
+  }
+
+  const deleteCard = (card_id) => {
     return axios
-    .delete(`${BASE_URL}/cards/${cards.card_id}`)
-    .then((cardsResponse) => {
-        const cards = cardsResponse.filter((card) => {
-          return card.card_id
-        });
-        setCards(cards)})
+    .delete(`${BASE_URL}/cards/${card_id}`)
+    .then((cardsResponse) => refreshCards())
     .catch((error) => {console.log(error)})
   };
+
+  console.log(`${props.selectedBoard?.board_id} Board`);
+  console.log(`${props.message} Message on card in the Board file`);
 
   return (
     <section>
       <div>
-        <CreateCard onUpdateCardList={refreshCards} />
+        <CreateCard selectedBoard={props.selectedBoard} onUpdateCardDisplay={refreshCards} />
       </div>
 
       <div>
-        <CardList cards={cards} deleteCard={deleteCard}/>
+        <CardList selectedBoard={props.selectedBoard} cards={cards} deleteCard={deleteCard} plusOneStar={plusOneStar}/>
       </div>
     </section>
   )

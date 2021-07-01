@@ -17,25 +17,22 @@ const CardList = (props) => {
         console.log(event.target.value);
     };
 
-    const plusOneStar = () => {
-        return <div></div>
-    }
-
-    const getAllOptions = () => {
-        const options = props.cards.map((card, index) =>
-            <option key={card.card_id} likes_count={props.likes_count} plusOneStar={plusOneStar} deleteCard={props.deleteCard}></option>
+    const getAllCards = () => {
+        const cardComponents = props.cards.map((card, index) =>
+            <Card key={card.card_id} card_id={card.card_id} message={card.message} likes_count={props.likes_count} plusOneStar={props.plusOneStar} deleteCard={props.deleteCard}/>
         );
-    return options;
+    return cardComponents;
     };
+
+    console.log(`${props.selectedBoard?.board_id} CardList`);
+
+    console.log(`${props.message} Message on CardList`);
 
     return (
     <section>
-        <select onChange={onSelectChanged}> 
-            {getAllOptions()}
-        </select>
-        <main>
-            <Card cards={props.cards} plusOneStar={plusOneStar} deleteCard={props.deleteCard}/>
-        </main>
+        <section>
+            {getAllCards()}
+        </section>
     </section>
     )
 };
