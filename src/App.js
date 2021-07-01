@@ -9,6 +9,7 @@ import axios from 'axios';
 const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
 
 function App() {
+
   const [boards, setBoards] = useState([]);
     // [
     //   {
@@ -22,17 +23,17 @@ function App() {
     //     owner: "adelaide",
     //     board_id: null
     //   },
-    // ]
+    // ]);
 
   const [selectedBoard, setSelectedBoard] = useState(null);
 
   const onBoardSelected = (selectedBoard) => {
     setSelectedBoard(selectedBoard);
-  }
+  };
 
   useEffect (() => {
     refreshBoards()
-    },[])
+    },[]);
 
   const refreshBoards = () => {
     return axios
@@ -42,22 +43,20 @@ function App() {
       console.log(boards);
       setBoards(boards)})
     .catch((error)=>{console.log(error)})
-  }
+  };
 
   return (
-    <div className="App">
+    <section className="App">
       <header>
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpTs4k73tsmQGuUInH-lVvYy0S7yOhO4z3hQ&usqp=CAU" className="App-logo" alt="sandy beach" /> */}
         {/* //"safe navigation operator" '?' asking if null, use null, but if not null, use look up*/}
         <h1>{selectedBoard?.title} Inspiration Board</h1>
       </header>
-
       <main>
         <BoardList { ...{selectedBoard, onBoardSelected, boards} }/>
         <CreateBoard onUpdateBoardList={refreshBoards} />
       </main>
-
-    </div>
+    </section>
   );
 }
 
