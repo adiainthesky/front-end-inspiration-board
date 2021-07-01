@@ -12,26 +12,21 @@ const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
 const Board = (props) => {
   //use board id to get cards via useEffect
   
-  const [cards, setCards] = useState([]);
-    // [
-    //   {
-    //     board_id: null,
-    //     card_id: null,
-    //     likes_count: 0,
-    //     message: ""
-    //   },
-    // ]
-  // );
-
-  const [selectedCard, setSelectedCard] = useState(null);
-
-  const onCardSelected = (selectedCard) => {
-    setSelectedCard(selectedCard);
-  };
+  const [cards, setCards] = useState(
+    [
+      {
+        board_id: null,
+        card_id: null,
+        likes_count: 0,
+        message: ""
+      },
+    ]
+  );
 
   // if board value changes, useEffect hears it and re renders the cards
   useEffect (() => {
     refreshCards()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.selectedBoard]);
 
   const refreshCards = () => {
@@ -44,6 +39,17 @@ const Board = (props) => {
     .catch((error)=>{console.log(error)})
   };
 
+  const deleteCard = () => {
+    return axios
+    .delete(`${BASE_URL}/cards/${cards.card_id}`)
+    .then((cardsResponse) => {
+        const cards = cardsResponse.filter((card) => {
+          return card.card_id
+        });
+        setCards(cards)})
+    .catch((error) => {console.log(error)})
+  };
+
   return (
     <section>
       <div>
@@ -51,14 +57,15 @@ const Board = (props) => {
       </div>
 
       <div>
-        {/* <CardList { ...{selectedCard, onCardSelected, cards} }/> */}
+        <CardList cards={cards} deleteCard={deleteCard}/>
       </div>
     </section>
   )
 };
 
 Board.propTypes = {
-  selectedBoard: PropTypes.func.isRequired
+  selectedBoard: PropTypes.func.isRequired,
+  board_id: PropTypes.number.isRequired
 };
 
 export default Board;

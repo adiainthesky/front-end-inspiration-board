@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Card from './Card';
 import './Board.css';
+import axios from 'axios';
 
 const CardList = (props) => {
 
@@ -10,15 +11,19 @@ const CardList = (props) => {
     const onSelectChanged = (event) => {
         //render on page
         const index = event.target.value
-        props.onCardSelected(props.cards[index]);
+        props.onCardSelected(props.boards[index]);
 
         console.log(event.target);
         console.log(event.target.value);
     };
 
+    const plusOneStar = () => {
+        return <div></div>
+    }
+
     const getAllOptions = () => {
         const options = props.cards.map((card, index) =>
-            <option key={card.card_id} value={index}>{card.message}</option>
+            <option key={card.card_id} likes_count={props.likes_count} plusOneStar={plusOneStar} deleteCard={props.deleteCard}></option>
         );
     return options;
     };
@@ -29,15 +34,13 @@ const CardList = (props) => {
             {getAllOptions()}
         </select>
         <main>
-            <Card card_id={props.card_id} message={props.message} selectedCard={props.selectedCard}/>
+            <Card cards={props.cards} plusOneStar={plusOneStar} deleteCard={props.deleteCard}/>
         </main>
     </section>
     )
 };
 
 CardList.propTypes = {
-    selectedCard: PropTypes.string.isRequired,
-    onCardSelected: PropTypes.func.isRequired,
     cards: PropTypes.arrayOf(
           PropTypes.shape({
             card_id: PropTypes.number.isRequired,
@@ -48,3 +51,5 @@ CardList.propTypes = {
 };
 
 export default CardList;
+
+

@@ -29,6 +29,7 @@ const BoardList = (props) => {
             {getAllOptions()}
         </select>
         <main>
+            {/* Is this redundant, pssing both board_id and selsectedBoard? */}
             <Board board_id={props.board_id} selectedBoard={props.selectedBoard}/>
         </main>
     </section>
