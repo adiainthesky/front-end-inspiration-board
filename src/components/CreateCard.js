@@ -41,7 +41,7 @@ const CreateCard = (props) => {
       <form onSubmit={onFormSubmit} className="flex-col align-base">
         <h2>Create a new card</h2>
 
-          <label htmlFor="message">Message: </label>
+          <label htmlFor="message" className="bold-type">Message: </label>
 
           <input 
           type="text" 

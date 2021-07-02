@@ -21,9 +21,6 @@ const CardList = (props) => {
 
     return (
     <section>
-      
-      // CHECK IT OUT HERE
-//         <div className="cards-list flex">
         <div className="cards-list flex-row flex-wrap">
             {getAllCards()}
         </div>

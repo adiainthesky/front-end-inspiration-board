@@ -53,11 +53,11 @@ function App() {
       <header className="header">
         <h1>{selectedBoard?.title} Inspiration Board</h1>
       </header>
-      <main>
+      <main class="large-font">
         <CreateBoard onUpdateBoardList={refreshBoards} />
         <BoardList { ...{selectedBoard, onBoardSelected, boards} }/>
       </main>
-      <footer className="footer">©copyright 2021</footer>
+      <footer>©copyright 2021</footer>
 
     </section>
   );

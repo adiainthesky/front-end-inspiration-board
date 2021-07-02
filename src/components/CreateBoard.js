@@ -46,14 +46,14 @@ const CreateBoard = (props) => {
   };
 
   return (
-    <section>
+    <section className="padding-left">
       <form onSubmit={onFormSubmit} className="flex-col align-base">
         <h2>Create a new board</h2>
 
-          <label htmlFor="title">Board Title: </label>
+          <label htmlFor="title" className="bold-type">Board Title: </label>
           <input type="text" name="title" value={formFields.title} onChange={onTitleChange} />
 
-          <label htmlFor="owner">Owner's Name: </label>
+          <label htmlFor="owner" className="bold-type">Owner's Name: </label>
           
           <input type="text" name="owner" value={formFields.owner} onChange={onOwnerChange} className={formFields.owner.length === 0 && formFields.title.length > 0 ? 'invalid-form' : ''}/>
 

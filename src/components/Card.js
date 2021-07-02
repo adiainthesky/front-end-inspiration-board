@@ -8,9 +8,8 @@ const Card = (props) => {
         <article className="post-it">
             <div>
                 <div>{props.message}</div>
-                <div>{props.likes_count}🐚</div>
-                <div onClick={() => props.plusOneStar(props.card_id)}>+1</div>
-                <div onClick={() => props.deleteCard(props.card_id)}>Delete</div>
+                <div classname="star-button" onClick={() => props.plusOneStar(props.card_id)}>{props.likes_count}⭐</div>
+                <button className="delete-button" onClick={() => props.deleteCard(props.card_id)}>Delete</button>
             </div>
         </article>
     )

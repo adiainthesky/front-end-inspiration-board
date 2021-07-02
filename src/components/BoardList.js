@@ -31,11 +31,9 @@ const BoardList = (props) => {
             {getAllOptions()}
         </select>
         <section className="board-list-container">
-             
-// CHECK IT OUT HERE
-//           <main>
-              <Board selectedBoard={props.selectedBoard}/>
-//           </main>
+            <main>
+                <Board selectedBoard={props.selectedBoard}/>
+            </main>
         </section>
     </section>
     )
