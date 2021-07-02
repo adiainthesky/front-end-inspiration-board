@@ -9,7 +9,20 @@
   color: white;
 }
 
+main {
+
+opacity: 100%;
+}
+
 .App {
+  z-index: 5;
+}
+
+.background {
+  background-image: url(https://jooinn.com/images/sand-waves-2.jpg);
+  background-size: cover;
+  background-color: tan;
+  background-blend-mode: luminosity;
   height: 500px;
   /* text-align: center; */
   /* background-color: blue; */
@@ -18,9 +31,12 @@
   color: white;
 }
 
+
+
 body{
-  /* background-image: url(https://jooinn.com/images/sand-waves-2.jpg); */
-  background-color: olive;
+  
+
+  /* background-color: olive; */
 }
 /* red box when input is invalid */
 input.invalid-form {
@@ -33,11 +49,15 @@ input.invalid-form {
   height: 100px;
   margin: 10px;
   padding: 10px;
-  border: solid 3px purple;
+  border: solid 10px purple;
+  border-radius: 25px;
+  /* overflow: scroll; */
+  word-break: break-word;
 }
 
 .cards-list {
   width: 70%;
+  height: 120px;
   margin: 10px;
   border: solid 10px black;
 }
