@@ -5,7 +5,6 @@ import CardList from './CardList';
 import CreateCard from './CreateCard';
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-require('dotenv').config();
 
 const BASE_URL = "https://sand-inspiration-board.herokuapp.com";
 
@@ -15,6 +14,8 @@ const Board = (props) => {
   const LEAST_RECENT = "id_asc";
   const MOST_LIKED = "likes_desc";
   const LEAST_LIKED = "likes_asc";
+  const A_TO_Z = "alphab_asc";
+  const Z_TO_A = "alphab_desc";
 
   const [sort, setSorting] = useState(MOST_RECENT);
 
@@ -65,14 +66,11 @@ const Board = (props) => {
     .catch((error) => {console.log(error)})
   };
 
-  console.log(`${props.selectedBoard?.board_id} Board`);
-  console.log(`${props.message} Message on card in the Board file`);
-
   return (
     <section>
-        <div>
+        {props.selectedBoard && <div>
           <CreateCard selectedBoard={props.selectedBoard} onUpdateCardDisplay={refreshCards} />
-        </div>
+        </div>}
 
       <div>
       <section>
@@ -83,14 +81,13 @@ const Board = (props) => {
                   <option value={LEAST_RECENT}>least recent</option>
                   <option value={MOST_LIKED}>most liked</option>
                   <option value={LEAST_LIKED}>least liked</option>
+                  <option value={A_TO_Z}>a to z</option>
+                  <option value={Z_TO_A}>z to a</option>
               </select>
           </form>
         </section>
         <CardList selectedBoard={props.selectedBoard} cards={cards} deleteCard={deleteCard} plusOneStar={plusOneStar}/>
       </div>
-        <div>
-          <CardList selectedBoard={props.selectedBoard} cards={cards} deleteCard={deleteCard} plusOneStar={plusOneStar}/>
-        </div>
     </section>
   )
 };

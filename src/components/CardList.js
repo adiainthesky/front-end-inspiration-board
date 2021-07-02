@@ -25,7 +25,6 @@ const CardList = (props) => {
 
     return (
     <section>
-        {getAllCards()}
         <div className="cards-list flex">
             {getAllCards()}
         </div>

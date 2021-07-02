@@ -1,5 +1,5 @@
 
-.Header {
+.header {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
   color: white;
 }
 
-.App {
+.app {
   height: 500px;
   /* text-align: center; */
   /* background-color: blue; */
@@ -19,9 +19,13 @@
   color: white;
 }
 
+main {
+  display: flex;
+}
+
 body{
-  /* background-image: url(https://jooinn.com/images/sand-waves-2.jpg); */
-  background-color: olive;
+  background-image: url(https://jooinn.com/images/sand-waves-2.jpg);
+  /* background-color: olive; */
 }
 /* red box when input is invalid */
 input.invalid-form {
@@ -30,17 +34,23 @@ input.invalid-form {
   }
 
 .post-it {
+  background-image: url(https://www.pikpng.com/pngl/b/300-3001249_us-know-the-thrill-of-spotting-a-little.png);
+  text-align: center;
   width: 100px;
   height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* margin: 10px; */
+  padding: 15px;
   margin: 10px;
-  padding: 10px;
-  border: solid 3px purple;
+  flex: 0 0 auto;
+  /* border: solid 3px purple; */
 }
 
 .cards-list {
   width: 70%;
-  margin: 10px;
-  border: solid 10px black;
+  margin: 10px; 
+  /* border: solid 10px black; */
 }
 
 .flex {

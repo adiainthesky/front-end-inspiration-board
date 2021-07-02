@@ -29,9 +29,9 @@ const BoardList = (props) => {
         <select onChange={onSelectChanged}> 
             {getAllOptions()}
         </select>
-        <main>
+        <section className="board-list-container">
             <Board selectedBoard={props.selectedBoard}/>
-        </main>
+        </section>
     </section>
     )
 };
