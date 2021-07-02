@@ -7,12 +7,12 @@ const Card = (props) => {
 
     return (
         <section>
-            <p>{props.message}</p>
-            <ul>
-                <li><p>{props.likes_count}🐚</p></li>
-                <li><p onClick={() => props.plusOneStar(props.card_id)}>+1</p></li>
-                <li><p onClick={() => props.deleteCard(props.card_id)}>Delete</p></li>
-            </ul>
+            <div className="post-it">
+                <p>{props.message}</p>
+                <div><p>{props.likes_count}🐚</p></div>
+                <div><p onClick={() => props.plusOneStar(props.card_id)}>+1</p></div>
+                <div><p onClick={() => props.deleteCard(props.card_id)}>Delete</p></div>
+            </div>
         </section>
     )
 };

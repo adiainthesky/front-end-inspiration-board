@@ -28,6 +28,9 @@ input.invalid-form {
     box-shadow: 0 0 7px rgb(223, 34, 113);
   }
 
-
+.post-it {
+  height: 50px;
+  border: solid 3px purple;
+}
 
 
