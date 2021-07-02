@@ -49,8 +49,8 @@ function App() {
         <h1>{selectedBoard?.title} Inspiration Board</h1>
       </header>
       <main>
+      <CreateBoard onUpdateBoardList={refreshBoards} />
         <BoardList { ...{selectedBoard, onBoardSelected, boards} }/>
-        <CreateBoard onUpdateBoardList={refreshBoards} />
       </main>
       <footer>©copyright 2021</footer>
 
