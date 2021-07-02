@@ -53,8 +53,10 @@ function App() {
         <CreateBoard onUpdateBoardList={refreshBoards} />
       </main>
       <footer>©copyright 2021</footer>
+
     </section>
   );
 }
 
 export default App;
+
