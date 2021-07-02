@@ -30,9 +30,9 @@ const CardList = (props) => {
 
     return (
     <section>
-        <section>
+        <div className="cards-list flex">
             {getAllCards()}
-        </section>
+        </div>
     </section>
     )
 };

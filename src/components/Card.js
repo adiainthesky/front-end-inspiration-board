@@ -6,16 +6,14 @@ const Card = (props) => {
     console.log(`${props.message} Message on Card`);
 
     return (
-        <section>
-            <p>{props.message}</p>
-            <ul>
-                <li><p>{props.likes_count}🐚</p></li>
-                <li><p onClick={() => props.plusOneStar(props.card_id)}>+1</p></li>
-                <li><p onClick={() => props.deleteCard(props.card_id)}>Delete</p></li>
-            </ul>
+        <section className="post-it">
+                <div>{props.message}</div>
+                <div>{props.likes_count}🐚</div>
+                <div onClick={() => props.plusOneStar(props.card_id)}>+1</div>
+                <div onClick={() => props.deleteCard(props.card_id)}>Delete</div>
         </section>
     )
-};
+};  
 
 Card.propTypes = {
     plusOneStar: PropTypes.func.isRequired,
