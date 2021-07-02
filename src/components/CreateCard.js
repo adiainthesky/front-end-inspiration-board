@@ -50,7 +50,7 @@ const CreateCard = (props) => {
           value={formFields.message} 
           onChange={onMessageChange}/>
 
-        <input type="submit" value="Create New Card" disabled={formFields?.message.length > 10 || formFields.message.length === 0}/>
+        <input type="submit" value="Create New Card" disabled={formFields?.message.length > 40 || formFields.message.length === 0}/>
 
       </form>
     </section>
