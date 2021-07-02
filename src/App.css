@@ -14,7 +14,7 @@
   /* text-align: center; */
   background-image: url(https://jooinn.com/images/sand-waves-2.jpg);
   background-repeat: no-repeat;
-  background-size: 150% 150%;
+  background-size: cover;
   color: white;
 }
 
