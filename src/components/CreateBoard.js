@@ -52,15 +52,16 @@ const CreateBoard = (props) => {
 
         <div>
           <label htmlFor="title">Board Title: </label>
-          <input type="text" name="title" value={formFields.newTitle} onChange={onTitleChange} />
+          <input type="text" name="title" value={formFields.title} onChange={onTitleChange} />
         </div>
 
         <div>
           <label htmlFor="owner">Owner's Name: </label>
-          <input type="text" name="owner" value={formFields.newOwner} onChange={onOwnerChange} />
+          <input type="text" name="owner" value={formFields.owner} onChange={onOwnerChange} className={formFields.owner.length === 0 && formFields.title.length > 0 ? 'invalid-form' : ''}/>
         </div>
 
-        <input type="submit" value="Create New Board" />
+        <input type="submit" value="Create New Board" disabled={formFields.title.length === 0 || formFields.owner.length === 0} />
+        {/* <input type="submit" value="Create New Board" /> */}
 
       </form>
     </section>

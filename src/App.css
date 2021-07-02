@@ -18,6 +18,12 @@
   color: white;
 }
 
+/* red box when input is invalid */
+input.invalid-form {
+    border: red solid 3px;
+    box-shadow: 0 0 7px rgb(223, 34, 113);
+  }
+
 
 
 
