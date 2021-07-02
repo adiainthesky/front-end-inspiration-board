@@ -49,10 +49,20 @@ const CreateCard = (props) => {
 
         <div>
           <label htmlFor="message">Message: </label>
-          <input type="text" name="message" value={formFields.newMessage} onChange={onMessageChange} />
-        </div>
 
-        <input type="submit" value="Create New Card" />
+          <input 
+          type="text" 
+          name="message" 
+          value={formFields.message} 
+          onChange={onMessageChange}/>
+
+        </div>
+        {/* Button gets disabled, how to update button value when disabled? */}
+        <input type="submit" value="Create New Card" disabled={formFields?.message.length > 40 ? "invalid-input" : ""}/>
+        {/* <input type="submit" value=(!disabled ? "Create New Card": "Input too long") disabled={formFields?.message.length > 10 ? "invalid-input" : ""}/> */}
+
+
+
 
       </form>
     </section>
