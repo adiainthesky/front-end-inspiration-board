@@ -10,58 +10,83 @@ import axios from 'axios';
 const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
 
 const Board = (props) => {
-  //use board id to get cards via useEffect
+
+  const MOST_RECENT = "id_desc";
+  const LEAST_RECENT = "id_asc";
+  const MOST_LIKED = "likes_desc";
+  const LEAST_LIKED = "likes_asc";
+  const A_TO_Z = "alphab_asc";
+  const Z_TO_A = "alphab_desc";
+
+  const [sort, setSorting] = useState(MOST_RECENT);
   
   const [cards, setCards] = useState([]);
-    // [
+  
+    // format for each card:
     //   {
     //     board_id: null,
     //     card_id: null,
     //     likes_count: 0,
     //     message: ""
     //   }
-    // ]
-  // );
 
-  // if board value changes, useEffect hears it and re renders the cards
-  useEffect (() => {
-    refreshCards()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.selectedBoard]);
-
-  const refreshCards = () => {
-    console.log(props.selectedBoard);
-    // console.log(props.selectedBoard.board_id);
+   const handleSortingChange = (event) => {
+    const sort = event.target.value;
+    setSorting(sort);
+   };
+  
+   const refreshCards = useCallback(() => {
     return axios
-    .get(`${BASE_URL}/boards/${props.selectedBoard?.board_id}/cards`)
+    .get(`${BASE_URL}/boards/${props.selectedBoard?.board_id}/cards`, {
+      params: {
+        sort
+      }
+    })
     .then((cardsResponse) => {
       const cards = cardsResponse.data
-      console.log(`${cards} GET request from AXIOS in Boards`);
-      console.log(cards);
       setCards(cards)})
     .catch((error)=>{console.log(error)})
-  };
+    }, [props.selectedBoard, sort]);
 
-  const plusOneStar = () => {
-    return <div></div>
-  }
+    // if board value changes, useEffect hears it and re renders the cards
+    useEffect (() => {
+      refreshCards()
+      },[props.selectedBoard, refreshCards, sort]);
 
-  const deleteCard = (card_id) => {
+    const plusOneStar = (card_id) => {
+      return axios
+        .patch(`${BASE_URL}/cards/${card_id}/like`)
+        .then(() => refreshCards())
+        .catch((error) => {console.log(error)})  
+    };
+  
+   const deleteCard = (card_id) => {
     return axios
     .delete(`${BASE_URL}/cards/${card_id}`)
-    .then((cardsResponse) => refreshCards())
+    .then(() => refreshCards())
     .catch((error) => {console.log(error)})
-  };
-
-  console.log(`${props.selectedBoard?.board_id} Board`);
-  console.log(`${props.message} Message on card in the Board file`);
+    };
 
   return (
     <section>
-      <div>
-        <CreateCard selectedBoard={props.selectedBoard} onUpdateCardDisplay={refreshCards} />
-      </div>
+        {props.selectedBoard && <div>
+          <CreateCard selectedBoard={props.selectedBoard} onUpdateCardDisplay={refreshCards} />
+        </div>}
 
+      <div>
+      <section>
+          <form>
+              <label>Order by:</label>
+              <select onChange={handleSortingChange}>
+                  <option value={MOST_RECENT}>most recent</option>
+                  <option value={LEAST_RECENT}>least recent</option>
+                  <option value={MOST_LIKED}>most liked</option>
+                  <option value={LEAST_LIKED}>least liked</option>
+                  <option value={A_TO_Z}>a to z</option>
+                  <option value={Z_TO_A}>z to a</option>
+              </select>
+          </form>
+        </section>
       <div>
         <CardList selectedBoard={props.selectedBoard} cards={cards} deleteCard={deleteCard} plusOneStar={plusOneStar}/>
       </div>

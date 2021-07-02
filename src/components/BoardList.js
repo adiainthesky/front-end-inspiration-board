@@ -30,10 +30,13 @@ const BoardList = (props) => {
         <select onChange={onSelectChanged}> 
             {getAllOptions()}
         </select>
-
-        <main>
-            <Board selectedBoard={props.selectedBoard}/>
-        </main>
+        <section className="board-list-container">
+             
+// CHECK IT OUT HERE
+//           <main>
+              <Board selectedBoard={props.selectedBoard}/>
+//           </main>
+        </section>
     </section>
     )
 };

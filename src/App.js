@@ -41,18 +41,23 @@ function App() {
     .catch((error)=>{console.log(error)})
   };
 
-  console.log(`${selectedBoard?.board_id} LINE 48`);
+  const deleteBoard = (board_id) => {
+    return axios
+    .delete(`${BASE_URL}/boards/${board_id}`)
+    .then(() => refreshBoards())
+    .catch((error) => {console.log(error)})
+  };
 
   return (
-    <section className="App">
-      <header className="Header">
+    <section className="app">
+      <header className="header">
         <h1>{selectedBoard?.title} Inspiration Board</h1>
       </header>
       <main>
-      <CreateBoard onUpdateBoardList={refreshBoards} />
+        <CreateBoard onUpdateBoardList={refreshBoards} />
         <BoardList { ...{selectedBoard, onBoardSelected, boards} }/>
       </main>
-      <footer>©copyright 2021</footer>
+      <footer className="footer">©copyright 2021</footer>
 
     </section>
   );
