@@ -58,13 +58,13 @@ const Board = (props) => {
 
   return (
     <section>
-      <div>
-        <CreateCard selectedBoard={props.selectedBoard} onUpdateCardDisplay={refreshCards} />
-      </div>
+        <div>
+          <CreateCard selectedBoard={props.selectedBoard} onUpdateCardDisplay={refreshCards} />
+        </div>
 
-      <div>
-        <CardList selectedBoard={props.selectedBoard} cards={cards} deleteCard={deleteCard} plusOneStar={plusOneStar}/>
-      </div>
+        <div>
+          <CardList selectedBoard={props.selectedBoard} cards={cards} deleteCard={deleteCard} plusOneStar={plusOneStar}/>
+        </div>
     </section>
   )
 };

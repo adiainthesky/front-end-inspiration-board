@@ -12,7 +12,6 @@
 .App {
   height: 500px;
   /* text-align: center; */
-  background-image: url(https://jooinn.com/images/sand-waves-2.jpg);
   /* background-color: blue; */
   background-repeat: no-repeat;
   /* background-size: 150% 150%; */
@@ -20,7 +19,8 @@
 }
 
 body{
-  background-image: url(https://jooinn.com/images/sand-waves-2.jpg);
+  /* background-image: url(https://jooinn.com/images/sand-waves-2.jpg); */
+  background-color: olive;
 }
 /* red box when input is invalid */
 input.invalid-form {
@@ -29,8 +29,20 @@ input.invalid-form {
   }
 
 .post-it {
-  height: 50px;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
   border: solid 3px purple;
 }
 
+.cards-list {
+  width: 70%;
+  margin: 10px;
+  border: solid 10px black;
+}
 
+.flex {
+  display: flex;
+  flex-direction: row;
+}
