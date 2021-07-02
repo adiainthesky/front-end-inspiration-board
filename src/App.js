@@ -64,13 +64,9 @@ function App() {
         <BoardList selectedBoard={selectedBoard} onBoardSelected={onBoardSelected} boards={boards}/>
         <CreateBoard onUpdateBoardList={refreshBoards} />
       </main>
-      {/* <footer>copyright 2021</footer> */}
     </section>
   );
 }
 
 export default App;
 
-
-//if time allows: functionality to have newly created board automatically open
-// setSelectedBoard(boards[-1])

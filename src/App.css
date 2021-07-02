@@ -1,7 +1,6 @@
 
 .Header {
   text-align: center;
-  /* background-color: #282c34; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,13 +10,18 @@
 }
 
 .App {
+  height: 500px;
   /* text-align: center; */
   background-image: url(https://jooinn.com/images/sand-waves-2.jpg);
+  /* background-color: blue; */
   background-repeat: no-repeat;
-  background-size: 150% 150%;
+  /* background-size: 150% 150%; */
   color: white;
 }
 
+body{
+  background-image: url(https://jooinn.com/images/sand-waves-2.jpg);
+}
 /* red box when input is invalid */
 input.invalid-form {
     border: red solid 3px;
