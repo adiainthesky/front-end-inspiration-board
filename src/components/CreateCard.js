@@ -2,8 +2,9 @@ import React from 'react';
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+require('dotenv').config();
 
-const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
+const BASE_URL = "https://sand-inspiration-board.herokuapp.com";
 
 const CreateCard = (props) => {
 
@@ -16,7 +17,6 @@ const CreateCard = (props) => {
       message: event.target.value
     })
     console.log(`${formFields.message} Message on CreateCard LINE 18`);
-
   };
 
   const onFormSubmit = (event) => {
@@ -39,8 +39,6 @@ const CreateCard = (props) => {
   console.log(`${props.selectedBoard?.board_id} is the board id in CreateCard`);
 
   console.log(`${formFields.message} is the message on CreateCard`);
-
-
 
   return (
     <section>
@@ -70,7 +68,8 @@ const CreateCard = (props) => {
 };
 
 CreateCard.propTypes = {
-  onUpdateCardList: PropTypes.func.isRequired
+  selectedBoard: PropTypes.func.isRequired,
+  onUpdateCardDisplay: PropTypes.func.isRequired
 };
 
 export default CreateCard;

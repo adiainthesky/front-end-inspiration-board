@@ -27,7 +27,8 @@ opacity: 100%;
   /* text-align: center; */
   /* background-color: blue; */
   background-repeat: no-repeat;
-  /* background-size: 150% 150%; */
+  background-size: cover;
+
   color: white;
 }
 

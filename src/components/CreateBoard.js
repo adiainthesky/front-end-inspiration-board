@@ -2,8 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+require('dotenv').config();
 
-const BASE_URL = "https://sand-inspiration-board.herokuapp.com"
+const BASE_URL = "https://sand-inspiration-board.herokuapp.com";
 
 const CreateBoard = (props) => {
 

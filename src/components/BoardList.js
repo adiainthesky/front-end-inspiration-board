@@ -15,8 +15,6 @@ const BoardList = (props) => {
 
     const getAllOptions = () => {
         const options = props.boards.map((board, index) =>
-            // <option value={board.title} selected={isSelected(board.title)}>{board.title}</option>
-            // not needed if boards === selectedBoards then selected =true
             <option key={board.board_id} value={index}>{board.title}</option>
         );
     return options;
@@ -32,7 +30,6 @@ const BoardList = (props) => {
             {getAllOptions()}
         </select>
         <main>
-            {/* Is this redundant, pssing both board_id and selsectedBoard? */}
             <Board selectedBoard={props.selectedBoard}/>
         </main>
     </section>
@@ -43,11 +40,11 @@ BoardList.propTypes = {
     selectedBoard: PropTypes.string.isRequired,
     onBoardSelected: PropTypes.func.isRequired,
     boards: PropTypes.arrayOf(
-          PropTypes.shape({
-            board_id: PropTypes.number.isRequired,
-            title: PropTypes.string.isRequired,
-            owner: PropTypes.string.isRequired
-          }))
+        PropTypes.shape({
+          board_id: PropTypes.number.isRequired,
+          title: PropTypes.string.isRequired,
+          owner: PropTypes.string.isRequired
+        }))
 };
 
 export default BoardList;
