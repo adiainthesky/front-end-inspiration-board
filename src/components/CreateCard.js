@@ -35,16 +35,12 @@ const CreateCard = (props) => {
     });
   };
 
-  console.log(`${props.selectedBoard?.board_id} is the board id in CreateCard`);
-
-  console.log(`${formFields.message} is the message on CreateCard`);
 
   return (
     <section>
-      <form onSubmit={onFormSubmit}>
+      <form onSubmit={onFormSubmit} className="flex-col align-base">
         <h2>Create a new card</h2>
 
-        <div>
           <label htmlFor="message">Message: </label>
 
           <input 
@@ -53,13 +49,7 @@ const CreateCard = (props) => {
           value={formFields.message} 
           onChange={onMessageChange}/>
 
-        </div>
-        {/* Button gets disabled, how to update button value when disabled? */}
-        <input type="submit" value="Create New Card" disabled={formFields?.message.length > 40 ? "invalid-input" : ""}/>
-        {/* <input type="submit" value=(!disabled ? "Create New Card": "Input too long") disabled={formFields?.message.length > 10 ? "invalid-input" : ""}/> */}
-
-
-
+        <input type="submit" value="Create New Card" disabled={formFields?.message.length > 40 || formFields.message.length === 0}/>
 
       </form>
     </section>

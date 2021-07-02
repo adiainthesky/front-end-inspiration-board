@@ -26,11 +26,16 @@ const BoardList = (props) => {
     return (
     <section>
         <h2>Pick a board</h2>
+        
         <select onChange={onSelectChanged}> 
             {getAllOptions()}
         </select>
         <section className="board-list-container">
-            <Board selectedBoard={props.selectedBoard}/>
+             
+// CHECK IT OUT HERE
+//           <main>
+              <Board selectedBoard={props.selectedBoard}/>
+//           </main>
         </section>
     </section>
     )

@@ -19,13 +19,12 @@ const CardList = (props) => {
     return cardComponents;
     };
 
-    console.log(`${props.selectedBoard?.board_id} CardList`);
-
-    console.log(`${props.message} Message on CardList`);
-
     return (
     <section>
-        <div className="cards-list flex">
+      
+      // CHECK IT OUT HERE
+//         <div className="cards-list flex">
+        <div className="cards-list flex-row flex-wrap">
             {getAllCards()}
         </div>
     </section>
